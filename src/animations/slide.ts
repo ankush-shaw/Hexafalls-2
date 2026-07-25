@@ -1,6 +1,11 @@
-import { Variants } from 'framer-motion';
+import { Variants, AnimationGeneratorType } from 'framer-motion';
 
-export const slideIn = (direction: 'up' | 'down' | 'left' | 'right', type = 'tween', delay = 0, duration = 0.4): Variants => ({
+export const slideIn = (
+  direction: 'up' | 'down' | 'left' | 'right',
+  type: AnimationGeneratorType = 'tween',
+  delay = 0,
+  duration = 0.4
+): Variants => ({
   hidden: {
     x: direction === 'left' ? '-100%' : direction === 'right' ? '100%' : 0,
     y: direction === 'up' ? '100%' : direction === 'down' ? '-100%' : 0,

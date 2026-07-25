@@ -3,6 +3,7 @@ import { SOCKET_URL } from '../../constants/api.constants';
 import { LOCAL_STORAGE_KEYS, SOCKET_RECONNECT_ATTEMPTS, SOCKET_RECONNECT_DELAY } from '../../constants/app.constants';
 import { ServerToClientEvents, ClientToServerEvents } from '../../types/socket.types';
 import { useAgentStore } from '../../store/agentStore';
+import { WorkflowExecution } from '../../types/workflow.types';
 import { useWorkflowStore } from '../../store/workflowStore';
 import { useNotificationsStore } from '../../store/notificationsStore';
 import { useChatStore } from '../../store/chatStore';
@@ -142,7 +143,11 @@ export class SocketClient {
 
     // Workflow Events
     this.socket.on('workflow:status-changed', ({ executionId, status }) => {
-      useWorkflowStore.getState().updateExecutionStatus(executionId, status);
+      // Server only emits execution-phase statuses; cast is safe by API contract
+      useWorkflowStore.getState().updateExecutionStatus(
+        executionId,
+        status as WorkflowExecution['status']
+      );
     });
 
     this.socket.on('workflow:log', ({ executionId, log }) => {
