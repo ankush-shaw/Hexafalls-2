@@ -18,7 +18,14 @@ export const SOCKET_EVENTS = {
 
   // Supervisor
   SUPERVISOR_STATUS: 'supervisor_status',
-  TASK_ASSIGNED: 'task_assigned',
+  WORKFLOW_RECEIVED: 'workflow_received',
+  WORKER_ASSIGNED: 'worker_assigned',
+  TASK_STARTED: 'task_started',
+  TASK_COMPLETED: 'task_completed',
+  TASK_FAILED: 'task_failed',
+  EXECUTION_COMPLETED: 'execution_completed',
+  RETRY_STARTED: 'retry_started',
+
   // Workers
   WORKER_STATUS: 'worker_status',
   WORKER_LOG: 'worker_log',
