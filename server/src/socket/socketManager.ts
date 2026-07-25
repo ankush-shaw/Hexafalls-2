@@ -27,9 +27,17 @@ export const SOCKET_EVENTS = {
   RETRY_STARTED: 'retry_started',
 
   // Workers
+  WORKER_CREATED: 'worker_created',
+  WORKER_READY: 'worker_ready',
+  WORKER_STARTED: 'worker_started',
+  WORKER_PROGRESS: 'worker_progress',
   WORKER_STATUS: 'worker_status',
   WORKER_LOG: 'worker_log',
   WORKER_COMPLETE: 'worker_complete',
+  WORKER_COMPLETED: 'worker_completed',
+  WORKER_FAILED: 'worker_failed',
+  WORKER_DESTROYED: 'worker_destroyed',
+
   // Workflow
   WORKFLOW_STARTED: 'workflow_started',
   WORKFLOW_FINISHED: 'workflow_finished',
