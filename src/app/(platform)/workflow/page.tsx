@@ -1,36 +1,84 @@
 'use client';
 
-import React from 'react';
-import { PageLayout } from '../../../layouts/PageLayout';
-import { Card } from '../../../components/ui/design-system';
-import { GitFork } from 'lucide-react';
+import React, { useState } from 'react';
+import { GitFork, Bot, Users, Cpu, Sparkles } from 'lucide-react';
+import { BossWorkspace } from '../../../features/boss';
+import { SupervisorWorkspace } from '../../../features/supervisor';
+import { WorkerWorkspace } from '../../../features/workers';
+import { LiveWorkflowWorkspace } from '../../../features/workflow';
+import { cn } from '../../../utils/cn';
 
 export default function WorkflowPage() {
+  const [activeTab, setActiveTab] = useState<'canvas' | 'boss' | 'supervisor' | 'workers'>('canvas');
+
   return (
-    <PageLayout
-      title="Workflow Engine"
-      description="Design, connect, and execute multi-agent coordination pipelines."
-      actions={
-        <div className="flex gap-2">
-          <span className="text-xs font-semibold px-2.5 py-1 bg-primary/10 border border-primary/20 text-primary rounded-md">
-            Graph Editor Ready
-          </span>
+    <div className="space-y-4">
+      {/* Executive Workspace View Switcher Bar */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 p-2 rounded-2xl border border-border/60 bg-card/60 backdrop-blur-md max-w-[1700px] mx-auto">
+        <div className="flex flex-wrap items-center gap-2">
+          <button
+            onClick={() => setActiveTab('canvas')}
+            className={cn(
+              'flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer',
+              activeTab === 'canvas'
+                ? 'bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md scale-102'
+                : 'text-muted-foreground hover:text-foreground hover:bg-muted/40'
+            )}
+          >
+            <GitFork className="h-4 w-4" />
+            <span>Live Agent Canvas & Replay</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('boss')}
+            className={cn(
+              'flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer',
+              activeTab === 'boss'
+                ? 'bg-gradient-to-r from-amber-500 to-amber-600 text-amber-950 shadow-md scale-102'
+                : 'text-muted-foreground hover:text-foreground hover:bg-muted/40'
+            )}
+          >
+            <Bot className="h-4 w-4" />
+            <span>Boss Agent (CEO Strategy)</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('supervisor')}
+            className={cn(
+              'flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer',
+              activeTab === 'supervisor'
+                ? 'bg-gradient-to-r from-sky-500 to-blue-600 text-sky-950 shadow-md scale-102'
+                : 'text-muted-foreground hover:text-foreground hover:bg-muted/40'
+            )}
+          >
+            <Users className="h-4 w-4" />
+            <span>Supervisor AI (COO Operations)</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('workers')}
+            className={cn(
+              'flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer',
+              activeTab === 'workers'
+                ? 'bg-gradient-to-r from-primary to-purple-600 text-primary-foreground shadow-md scale-102'
+                : 'text-muted-foreground hover:text-foreground hover:bg-muted/40'
+            )}
+          >
+            <Cpu className="h-4 w-4" />
+            <span>Worker Agents Ecosystem</span>
+          </button>
         </div>
-      }
-    >
-      <Card className="h-[60vh] flex flex-col justify-between items-center p-8 bg-card/40 border border-dashed border-border/80">
-        <div className="flex-1 flex flex-col items-center justify-center space-y-4">
-          <div className="p-4 bg-primary/10 text-primary rounded-full border border-primary/25 animate-pulse">
-            <GitFork className="h-8 w-8" />
-          </div>
-          <div className="text-center space-y-1.5 max-w-sm">
-            <h3 className="font-bold text-base">Workflow Builder</h3>
-            <p className="text-xs text-muted-foreground">
-              React Flow drag-and-drop workspace for agent node execution routes will initialize here in Phase 2.
-            </p>
-          </div>
+
+        <div className="hidden lg:flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-wider">
+          <Sparkles className="h-3 w-3" /> Enterprise Multi-Agent OS
         </div>
-      </Card>
-    </PageLayout>
+      </div>
+
+      {/* Render Selected Executive Workspace */}
+      {activeTab === 'canvas' && <LiveWorkflowWorkspace />}
+      {activeTab === 'boss' && <BossWorkspace />}
+      {activeTab === 'supervisor' && <SupervisorWorkspace />}
+      {activeTab === 'workers' && <WorkerWorkspace />}
+    </div>
   );
 }

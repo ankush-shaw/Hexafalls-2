@@ -3,3 +3,5 @@ export * from './agent.types';
 export * from './workflow.types';
 export * from './socket.types';
 export * from './api.types';
+export * from './chat.types';
+

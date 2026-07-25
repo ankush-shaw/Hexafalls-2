@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import { SidebarLayout } from '../../layouts/SidebarLayout';
+import { PlatformShell } from '../../layouts/PlatformShell';
 
 interface PlatformLayoutProps {
   children: React.ReactNode;
 }
 
 export default function PlatformLayout({ children }: PlatformLayoutProps) {
-  return <SidebarLayout>{children}</SidebarLayout>;
+  return <PlatformShell>{children}</PlatformShell>;
 }

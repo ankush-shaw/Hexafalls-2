@@ -7,6 +7,8 @@ import { WorkflowExecution } from '../../types/workflow.types';
 import { useWorkflowStore } from '../../store/workflowStore';
 import { useNotificationsStore } from '../../store/notificationsStore';
 import { useChatStore } from '../../store/chatStore';
+import { useConversationStore } from '../../store/conversationStore';
+
 
 export class SocketClient {
   private static instance: SocketClient | null = null;
@@ -121,12 +123,21 @@ export class SocketClient {
 
     this.socket.on('agent:message', (message) => {
       // Add to relevant chat streams
-      const activeStreamId = useChatStore.getState().activeStreamId;
+      const activeConvId = useConversationStore.getState().activeConversationId || 'conv-1';
       const targetStreamId = message.senderId === 'user' ? message.receiverId : message.senderId;
-      useChatStore.getState().addMessage(targetStreamId, message);
-      
+
+      useChatStore.getState().addMessage(targetStreamId, {
+        id: message.id,
+        conversationId: targetStreamId,
+        role: message.senderRole === 'user' ? 'user' : 'assistant',
+        content: message.content,
+        timestamp: message.timestamp,
+        status: 'delivered',
+        senderName: message.senderRole,
+      });
+
       // If user is chatting with someone else, push a notification
-      if (activeStreamId !== targetStreamId && message.senderRole !== 'user') {
+      if (activeConvId !== targetStreamId && message.senderRole !== 'user') {
         useNotificationsStore.getState().addNotification({
           id: message.id,
           title: `New message from ${message.senderRole}`,
@@ -136,6 +147,7 @@ export class SocketClient {
         });
       }
     });
+
 
     this.socket.on('agent:metrics-updated', ({ agentId, metrics }) => {
       useAgentStore.getState().updateAgentMetrics(agentId, metrics);

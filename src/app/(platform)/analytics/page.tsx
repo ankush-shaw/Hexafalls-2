@@ -1,34 +1,27 @@
 'use client';
-
-import React from 'react';
-import { PageLayout } from '../../../layouts/PageLayout';
-import { Card, Skeleton } from '../../../components/ui/design-system';
+import React, { useEffect } from 'react';
+import { BarChart3 } from 'lucide-react';
+import { PageHeader } from '../../../components/shared/PageHeader';
+import { PageContainer } from '../../../components/shared/PageContainer';
+import { EmptyState } from '../../../components/shared/EmptyState';
+import { useUIStore } from '../../../store/uiStore';
 
 export default function AnalyticsPage() {
-  return (
-    <PageLayout
-      title="System Metrics & Analytics"
-      description="Orchestrator resource usage, cost analytics, and response rate metrics."
-    >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="h-80 space-y-4">
-          <div className="border-b border-border/30 pb-3">
-            <h4 className="font-bold text-sm">LLM API Token Usage Cost</h4>
-          </div>
-          <div className="flex-1 flex items-center justify-center h-48 bg-background/30 rounded-lg border border-border/25">
-            <Skeleton className="h-5/6 w-11/12" />
-          </div>
-        </Card>
+  const { setBreadcrumbs } = useUIStore();
+  useEffect(() => { setBreadcrumbs([{ label: 'Analytics' }]); }, [setBreadcrumbs]);
 
-        <Card className="h-80 space-y-4">
-          <div className="border-b border-border/30 pb-3">
-            <h4 className="font-bold text-sm">System Load (CPU & RAM)</h4>
-          </div>
-          <div className="flex-1 flex items-center justify-center h-48 bg-background/30 rounded-lg border border-border/25">
-            <Skeleton className="h-5/6 w-11/12" />
-          </div>
-        </Card>
-      </div>
-    </PageLayout>
+  return (
+    <PageContainer>
+      <PageHeader
+        title="Analytics"
+        description="Real-time metrics, charts, and performance insights for your AI platform."
+        breadcrumbs={[{ label: 'Analytics' }]}
+      />
+      <EmptyState
+        icon={BarChart3}
+        title="No analytics data"
+        description="Analytics charts will appear once your workflows have generated data. Coming in Phase 4."
+      />
+    </PageContainer>
   );
 }

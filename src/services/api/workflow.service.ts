@@ -1,38 +1,41 @@
 import { apiClient } from './client';
-import { API_ENDPOINTS } from '../../constants/api.constants';
-import { Workflow, WorkflowExecution } from '../../types/workflow.types';
 import { ApiResponse } from '../../types/api.types';
+import {
+  WorkflowNodeData,
+  LiveEventItem,
+  SystemHealthItem,
+  AgentCommunicationPacket,
+} from '../../types/workflow.types';
 
 export const workflowService = {
-  getWorkflows: async (): Promise<Workflow[]> => {
-    const res = await apiClient.get<unknown, ApiResponse<Workflow[]>>(API_ENDPOINTS.WORKFLOWS.BASE);
-    return res.data;
+  /**
+   * Fetch active real-time workflow graph nodes and state
+   */
+  async getWorkflowGraph(): Promise<ApiResponse<{ nodes: WorkflowNodeData[]; health: SystemHealthItem[] }>> {
+    return apiClient.get<{ nodes: WorkflowNodeData[]; health: SystemHealthItem[] }, ApiResponse<{ nodes: WorkflowNodeData[]; health: SystemHealthItem[] }>>('/workflow');
   },
 
-  getWorkflowById: async (id: string): Promise<Workflow> => {
-    const res = await apiClient.get<unknown, ApiResponse<Workflow>>(API_ENDPOINTS.WORKFLOWS.BY_ID(id));
-    return res.data;
+  /**
+   * Fetch live event log stream
+   */
+  async getEvents(): Promise<ApiResponse<LiveEventItem[]>> {
+    return apiClient.get<LiveEventItem[], ApiResponse<LiveEventItem[]>>('/workflow/events');
   },
 
-  createWorkflow: async (workflow: Omit<Workflow, 'id' | 'createdAt' | 'updatedAt'>): Promise<Workflow> => {
-    const res = await apiClient.post<unknown, ApiResponse<Workflow>>(API_ENDPOINTS.WORKFLOWS.BASE, workflow);
-    return res.data;
+  /**
+   * Fetch inter-agent communication stream
+   */
+  async getCommunications(): Promise<ApiResponse<AgentCommunicationPacket[]>> {
+    return apiClient.get<AgentCommunicationPacket[], ApiResponse<AgentCommunicationPacket[]>>('/workflow/communications');
   },
 
-  updateWorkflow: async (id: string, workflow: Partial<Workflow>): Promise<Workflow> => {
-    const res = await apiClient.put<unknown, ApiResponse<Workflow>>(API_ENDPOINTS.WORKFLOWS.BY_ID(id), workflow);
-    return res.data;
+  /**
+   * Fetch replay step snapshots for completed workflows
+   */
+  async getReplay(workflowId: string): Promise<ApiResponse<{ steps: Record<string, unknown>[] }>> {
+    return apiClient.get<{ steps: Record<string, unknown>[] }, ApiResponse<{ steps: Record<string, unknown>[] }>>(`/workflow/replay?workflowId=${workflowId}`);
   },
 
-  deleteWorkflow: async (id: string): Promise<void> => {
-    await apiClient.delete(API_ENDPOINTS.WORKFLOWS.BY_ID(id));
-  },
-
-  executeWorkflow: async (id: string, inputs?: Record<string, unknown>): Promise<WorkflowExecution> => {
-    const res = await apiClient.post<unknown, ApiResponse<WorkflowExecution>>(
-      API_ENDPOINTS.WORKFLOWS.EXECUTE(id),
-      { inputs }
-    );
-    return res.data;
-  },
 };
+
+export default workflowService;

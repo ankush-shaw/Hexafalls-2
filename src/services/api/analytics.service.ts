@@ -1,36 +1,64 @@
 import { apiClient } from './client';
-import { API_ENDPOINTS } from '../../constants/api.constants';
 import { ApiResponse } from '../../types/api.types';
+import {
+  AnalyticsOverviewMetrics,
+  AgentAnalyticsMetrics,
+  ResourceMetrics,
+  PlatformNotification,
+  AuditLogItem,
+  PlatformSettings,
+} from '../../types/analytics.types';
 
-export interface AnalyticsSummary {
-  totalTasksCount: number;
-  activeAgentsCount: number;
-  averageExecutionTimeSeconds: number;
-  accuracyRatePercentage: number;
-  costSpentUsd: number;
-}
-
-export interface SystemLoadMetrics {
-  timestamp: string;
-  cpu: number;
-  memory: number;
-  networkInBytes: number;
-  networkOutBytes: number;
-}
 
 export const analyticsService = {
-  getSummary: async (): Promise<AnalyticsSummary> => {
-    const res = await apiClient.get<unknown, ApiResponse<AnalyticsSummary>>(
-      API_ENDPOINTS.ANALYTICS.SUMMARY
-    );
-    return res.data;
+  /**
+   * Fetch system-wide analytics overview
+   */
+  async getAnalytics(): Promise<ApiResponse<{ overview: AnalyticsOverviewMetrics; agents: AgentAnalyticsMetrics }>> {
+    return apiClient.get<{ overview: AnalyticsOverviewMetrics; agents: AgentAnalyticsMetrics }, ApiResponse<{ overview: AnalyticsOverviewMetrics; agents: AgentAnalyticsMetrics }>>('/analytics');
   },
 
-  getSystemLoad: async (timeRange: '1h' | '24h' | '7d' = '24h'): Promise<SystemLoadMetrics[]> => {
-    const res = await apiClient.get<unknown, ApiResponse<SystemLoadMetrics[]>>(
-      API_ENDPOINTS.ANALYTICS.SYSTEM_LOAD,
-      { params: { range: timeRange } }
-    );
-    return res.data;
+  /**
+   * Fetch system health & hardware resource telemetry
+   */
+  async getSystemTelemetry(): Promise<ApiResponse<ResourceMetrics>> {
+    return apiClient.get<ResourceMetrics, ApiResponse<ResourceMetrics>>('/system');
+  },
+
+  /**
+   * Fetch notification feed
+   */
+  async getNotifications(): Promise<ApiResponse<PlatformNotification[]>> {
+    return apiClient.get<PlatformNotification[], ApiResponse<PlatformNotification[]>>('/notifications');
+  },
+
+  /**
+   * Mark notification as read
+   */
+  async markNotificationRead(id: string): Promise<ApiResponse<{ success: boolean }>> {
+    return apiClient.post<{ success: boolean }, ApiResponse<{ success: boolean }>>('/notifications/read', { id });
+  },
+
+  /**
+   * Fetch audit logs
+   */
+  async getAuditLogs(): Promise<ApiResponse<AuditLogItem[]>> {
+    return apiClient.get<AuditLogItem[], ApiResponse<AuditLogItem[]>>('/audit');
+  },
+
+  /**
+   * Fetch platform settings
+   */
+  async getSettings(): Promise<ApiResponse<PlatformSettings>> {
+    return apiClient.get<PlatformSettings, ApiResponse<PlatformSettings>>('/settings');
+  },
+
+  /**
+   * Update platform settings
+   */
+  async updateSettings(settings: Partial<PlatformSettings>): Promise<ApiResponse<{ updated: boolean }>> {
+    return apiClient.post<{ updated: boolean }, ApiResponse<{ updated: boolean }>>('/settings', settings);
   },
 };
+
+export default analyticsService;

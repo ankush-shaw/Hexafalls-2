@@ -1,45 +1,110 @@
-import { type Node, type Edge } from '@xyflow/react';
+export type WorkflowNodeType =
+  | 'boss'
+  | 'supervisor'
+  | 'worker'
+  | 'validation'
+  | 'review'
+  | 'report'
+  | 'database'
+  | 'api';
 
-export type WorkflowStatus = 'draft' | 'active' | 'running' | 'completed' | 'failed' | 'paused';
+export type WorkflowNodeStatus =
+  | 'waiting'
+  | 'planning'
+  | 'queued'
+  | 'assigned'
+  | 'running'
+  | 'blocked'
+  | 'retrying'
+  | 'completed'
+  | 'failed'
+  | 'cancelled';
 
-export interface WorkflowStep {
-  id: string;
-  name: string;
-  description?: string;
-  agentId?: string; // Assigned agent
-  status: 'pending' | 'running' | 'completed' | 'failed' | 'skipped';
-  config: Record<string, unknown>;
-  dependencies: string[]; // step IDs
-}
-
-export interface Workflow {
-  id: string;
-  name: string;
-  description: string;
-  status: WorkflowStatus;
-  nodes: Node[];
-  edges: Edge[];
-  steps: WorkflowStep[];
-  createdBy: string;
-  createdAt: string;
-  updatedAt: string;
-}
+export type WorkflowStatus = WorkflowNodeStatus;
 
 export interface WorkflowExecutionLog {
+  id?: string;
   timestamp: string;
-  level: 'info' | 'warn' | 'error' | 'success';
+  level?: string;
   message: string;
-  stepId?: string;
-  agentId?: string;
+  step?: string;
+}
+
+export type WorkflowEdgeType =
+
+  | 'task_assignment'
+  | 'dependency'
+  | 'communication'
+  | 'validation'
+  | 'completion'
+  | 'retry'
+  | 'data_flow';
+
+export interface SystemHealthItem {
+  id: string;
+  name: string;
+  type: 'boss' | 'supervisor' | 'workers' | 'database' | 'socket' | 'gemini';
+  status: 'green' | 'yellow' | 'red';
+  latencyMs: number;
+  message: string;
+}
+
+export interface LiveEventItem {
+  id: string;
+  timestamp: string;
+  type: 'node_created' | 'task_started' | 'task_completed' | 'retry_started' | 'message_sent' | 'validation_passed';
+  title: string;
+  detail: string;
+  sourceNodeId?: string;
+  targetNodeId?: string;
+}
+
+export interface AgentCommunicationPacket {
+  id: string;
+  timestamp: string;
+  senderId: string;
+  senderName: string;
+  recipientId: string;
+  recipientName: string;
+  message: string;
+  priority: 'critical' | 'high' | 'medium' | 'low';
+  status: 'sent' | 'received' | 'processing';
+}
+
+export interface WorkflowReplayState {
+  isPlaying: boolean;
+  speed: 1 | 2 | 4;
+  currentStepIndex: number;
+  totalSteps: number;
+  scrubProgress: number; // 0 - 100%
 }
 
 export interface WorkflowExecution {
   id: string;
-  workflowId: string;
-  status: Exclude<WorkflowStatus, 'draft' | 'active'>;
-  startedAt: string;
-  completedAt?: string;
-  triggeredBy: string; // user ID or system scheduler
-  currentStepId?: string;
-  logs: WorkflowExecutionLog[];
+  name: string;
+  status: WorkflowNodeStatus;
+  progress: number;
+}
+
+export interface WorkflowNodeData extends Record<string, unknown> {
+
+  id: string;
+  label: string;
+
+  nodeType: WorkflowNodeType;
+  status: WorkflowNodeStatus;
+  department?: string;
+  assignedTaskId?: string;
+  assignedTaskName?: string;
+  currentStep?: string;
+  progress: number; // 0 - 100%
+  health: 'healthy' | 'busy' | 'overloaded' | 'failed' | 'idle';
+  latencyMs: number;
+  metrics?: {
+    cpuUsage: number;
+    memoryUsage: string;
+    tokensUsed: number;
+  };
+  subtasks?: { id: string; title: string; status: string }[];
+  logs?: { timestamp: string; message: string }[];
 }
