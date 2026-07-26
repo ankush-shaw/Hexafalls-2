@@ -1,6 +1,7 @@
 {
   "name": "hexafalls",
   "version": "0.1.0",
+  "author": "Ankush Shaw, Arpan Basak, Ranit Sarkar",
   "private": true,
   "scripts": {
     "dev": "next dev",
