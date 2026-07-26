@@ -6,7 +6,9 @@ export const appConfig = {
   port: parseInt(process.env.PORT || '5000', 10),
   apiPrefix: process.env.API_PREFIX || '/api/v1',
   corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  geminiApiKey: process.env.GEMINI_API_KEY || '',
 };
+
 
 export const dbConfig = {
   uri: process.env.MONGODB_URI || 'mongodb://localhost:27017/hexafalls_multiagent',
