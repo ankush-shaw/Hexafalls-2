@@ -1,447 +1,416 @@
-# AI Multi-Agent Business Automation Platform
+<div align="center">
 
-A modern AI-powered Multi-Agent Business Automation Platform where users interact through **text or voice**, a **Boss Agent** intelligently plans the workflow, a **Supervisor AI** orchestrates execution, specialized **Worker Agents** perform domain-specific tasks, and the final response is delivered as an elegant AI-generated report.
+<img src="https://img.shields.io/badge/AegisOS-Multi--Agent%20AI%20OS-6366f1?style=for-the-badge&logo=openai&logoColor=white" />
 
----
+# AegisOS — Enterprise Multi-Agent AI Operating System
 
-# Vision
+**A real-time AI OS where a CEO, COO, and AI Workers collaborate live to complete any task you give them.**
 
-Build a premium AI workspace that feels like the operating system for businesses.
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js)](https://nextjs.org)
+[![React](https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?style=flat-square&logo=typescript)](https://typescriptlang.org)
+[![Node.js](https://img.shields.io/badge/Node.js-20-339933?style=flat-square&logo=node.js)](https://nodejs.org)
+[![Express](https://img.shields.io/badge/Express-4-000000?style=flat-square&logo=express)](https://expressjs.com)
+[![MongoDB](https://img.shields.io/badge/MongoDB-7-47a248?style=flat-square&logo=mongodb)](https://mongodb.com)
+[![Socket.IO](https://img.shields.io/badge/Socket.IO-4-010101?style=flat-square&logo=socket.io)](https://socket.io)
+[![Gemini AI](https://img.shields.io/badge/Gemini-1.5%20Pro-4285f4?style=flat-square&logo=google)](https://ai.google.dev)
 
-The frontend should not look like a normal chatbot.
-
-It should feel like:
-
-- Cursor AI
-- ChatGPT
-- Notion AI
-- Linear
-- Vercel
-- Raycast
-- Perplexity
-
-combined into one beautiful business operating system.
+[📖 API Docs](#api-documentation) · [🐳 Docker](#docker-deployment) · [🧪 QA Suite](#running-the-qa-suite)
 
 ---
 
-# Core Workflow
+![Status](https://img.shields.io/badge/Status-Production%20Ready-22c55e?style=for-the-badge)
+![QA](https://img.shields.io/badge/QA%20Suite-8%2F8%20Passing-22c55e?style=for-the-badge)
+![Build](https://img.shields.io/badge/Build-Passing-22c55e?style=for-the-badge)
+
+</div>
+
+---
+
+## 🧠 What is AegisOS?
+
+**AegisOS** is a production-grade **Real-Time Multi-Agent AI Operating System** — a full-stack platform where autonomous AI agents behave like a real corporate hierarchy: a **CEO (Boss Agent)**, a **COO (Supervisor AI)**, and a dynamic **pool of Worker Agents** — all working together live to complete any task you submit.
+
+You watch every decision, every delegation, every execution — in real time — through a cinematic, premium dashboard.
 
 ```
-User
-  ↓
-Text / Voice Input
-  ↓
-Boss Agent
-  ↓
-Creates Workflow
-  ↓
-Supervisor AI
-  ↓
-Assigns Tasks
-  ↓
-Worker Agents
-  - Sales
-  - Marketing
-  - Inventory
-  - Technical
-  - Customer Support
-  ↓
-Workers Complete Tasks
-  ↓
-Supervisor Collects Results
-  ↓
-Boss Agent Reviews Everything
-  ↓
-Gemini Generates Final Report
-  ↓
-User Receives Complete Business Report
+User Request (Text / Voice)
+        ↓
+  Boss Agent (CEO)          → Analyzes intent · Plans strategy · Discovers departments
+        ↓
+  Supervisor AI (COO)       → Breaks plan into tasks · Builds DAG · Spawns worker agents
+        ↓
+  Worker Agents (Team)      → Execute tasks in parallel · 5-step runtime engine
+        ↓
+  Supervisor AI             → Collects results · Handles retries · Validates output
+        ↓
+  Boss Agent                → Reviews every result · Scores quality · Approves
+        ↓
+  Gemini AI Report Engine   → Generates Executive Report (streamed live)
+        ↓
+  Frontend Dashboard        → You see everything. Live. Instantly.
 ```
 
 ---
 
-# Frontend Goals
+## ✨ Key Features
 
-The frontend must provide a premium real-time experience.
+### 🤖 Multi-Agent Hierarchy
+- **Boss Agent (CEO)** — Parses user intent, analyzes complexity, discovers relevant departments, builds a full execution blueprint, and validates it across 7 self-check dimensions before delegating
+- **Supervisor AI (COO)** — Decomposes the blueprint into a Directed Acyclic Graph (DAG) of tasks, spawns dynamic worker agents, manages parallelism, and handles failure retries
+- **Worker Agents (Team)** — Each worker runs a deterministic **5-step execution pipeline**: Context Loading → Resource Loading → Logic Execution → Quality Validation → Output Synthesis
 
-The user should always know:
+### 🌐 Real-Time Live Canvas
+- **React Flow v12** interactive graph — visualizes the entire agent network with animated flowing edges
+- Every node updates live as agents progress — watch Boss → Supervisor → Workers → Report happen before your eyes
+- **Agent Inspector** — click any node for a full detail panel: logs, timing, output, status
+- **Workflow Replay Player** — replay any completed workflow at 1×, 2×, or 4× speed
 
-- What the AI is thinking
-- What the Boss Agent is planning
-- What workers are running
-- Current execution status
-- Completed tasks
-- Final results
+### 📊 Executive Report Engine
+- After all agents complete work, Boss Agent reviews each department result and scores quality (0–100)
+- Gemini 1.5 Pro generates a full boardroom-quality **Executive Report** streamed word-by-word
+- Download in **PDF**, **JSON**, or **CSV** format
+- Full report history — browse and re-read any past report
 
-No hidden processing. Everything should be transparent.
+### ⚡ Real-Time Infrastructure
+- **Socket.IO** — every agent event streams to the frontend instantly, zero polling
+- **Central Event Bus** — all agents communicate via typed async pub/sub events, never directly
+- **Workflow Kernel** — state machine with checkpoint save/recovery; interrupted workflows automatically resume
+- **BullMQ + Redis** queues for job scheduling (gracefully degrades to in-memory if Redis is offline)
 
----
+### 🔐 Enterprise Security
+- JWT access tokens + refresh token rotation
+- Role-based access control (Admin / Manager / Operator / Viewer / Guest)
+- Helmet HTTP security headers, CORS protection, rate limiting (200 req/15 min)
 
-# Design Language
-
-- Minimal
-- Modern
-- Professional
-- Premium
-- AI Native
-- Glassmorphism (light usage)
-- Rounded Components
-- Soft Shadows
-- Smooth Animations
-- Excellent Typography
-- Large White Space
-- Micro Interactions
-- Dark Mode First
-- Responsive
-- Accessible
-
----
-
-# Color Palette
-
-| Role | Hex | Description |
-| --- | --- | --- |
-| Background | `#09090B` | Main background color |
-| Surface | `#111827` | Surface elements and section backgrounds |
-| Cards | `#18181B` | Card background color |
-| Primary | `#3B82F6` | Primary action buttons and indicators |
-| Accent | `#8B5CF6` | Accent elements and dynamic indicators |
-| Success | `#22C55E` | Successful completion states |
-| Warning | `#F59E0B` | In-progress / warning states |
-| Danger | `#EF4444` | Errors and failures |
-| Text | `#FFFFFF` | Primary text color |
-| Secondary Text | `#A1A1AA` | Secondary and muted text |
-| Borders | `#27272A` | Subtle border lines |
+### 📡 Observability
+- Prometheus metrics endpoint (`/api/v1/platform/metrics`)
+- Real-time CPU %, RAM %, uptime, active connections monitoring
+- Winston structured logging with log levels (info, debug, warn, error, http)
 
 ---
 
-# Typography
+## 🛠️ Tech Stack
 
-- **Fonts:** Inter or Geist
-- Modern hierarchy
-- Large headings
-- Comfortable spacing
-- Readable body text
+### Frontend
 
----
+| Technology | Purpose |
+|---|---|
+| **Next.js 16** (App Router + Turbopack) | Full-stack React framework |
+| **React 19** | UI rendering with concurrent features |
+| **TypeScript 5.9** | Type safety across the entire codebase |
+| **React Flow v12** | Live multi-agent workflow canvas |
+| **Framer Motion** | Smooth micro-animations and page transitions |
+| **Zustand** | Global state management |
+| **Socket.IO Client** | Real-time event streaming from backend |
+| **Vanilla CSS + CSS Variables** | Glassmorphism design system, dark/light theme |
 
-# Main Pages
+### Backend
 
-## Landing Page
+| Technology | Purpose |
+|---|---|
+| **Node.js 20 + Express 4** | REST API server |
+| **TypeScript 5.9** | Type-safe backend services |
+| **Socket.IO 4** | Real-time WebSocket gateway |
+| **MongoDB 7 + Mongoose 8** | Primary database with schema validation |
+| **Redis 7 + ioredis** | Job queues and session caching (optional) |
+| **BullMQ** | Background job queue for agent tasks |
+| **Gemini 1.5 Pro** | AI completions and report generation |
+| **JWT + bcryptjs** | Authentication and password security |
+| **Swagger UI** | Interactive API documentation |
+| **Prometheus** | Metrics and telemetry |
 
-Contains:
-- Hero Section
-- Platform Overview
-- Workflow Illustration
-- Features
-- Why Choose Us
-- Call To Action
-- Footer
+### Infrastructure
 
-## AI Workspace
-
-This is the main application containing:
-- AI Chat
-- Voice Input
-- Execution Timeline
-- Workflow Graph
-- Boss Agent Status
-- Supervisor Status
-- Worker Cards
-- Activity Feed
-- Current Session
-- Final Report
-
-## Session History
-
-Displays:
-- Previous conversations
-- Reports
-- Workflow history
-- Search
-- Filter
-- Delete
-
-## Settings
-
-- Theme
-- Profile
-- Notifications
-- Voice Settings
-- API Keys
-- Model Selection
+| Technology | Purpose |
+|---|---|
+| **Docker + Docker Compose** | Container orchestration |
+| **Kubernetes** | Production deployment manifests |
+| **Nginx** | Reverse proxy + SSL termination |
+| **GitHub Actions** | CI/CD pipeline |
 
 ---
 
-# Workspace Layout
+## 📁 Project Structure
 
 ```
-------------------------------------------------
-Sidebar   |   Chat Workspace   |   Workflow Panel
-------------------------------------------------
+Hexafalls-2/
+├── src/                          # Next.js Frontend Application
+│   ├── app/
+│   │   ├── (auth)/               # Login / Register pages
+│   │   └── (platform)/           # Protected app pages
+│   │       ├── dashboard/        # Main chat & input page
+│   │       ├── workflow/         # Live React Flow canvas
+│   │       ├── agents/           # Boss / Supervisor / Worker pages
+│   │       ├── reports/          # Executive report center
+│   │       ├── analytics/        # System monitoring
+│   │       ├── history/          # Workflow history
+│   │       ├── notifications/    # Push notification center
+│   │       ├── profile/          # User profile
+│   │       └── settings/         # Platform settings
+│   ├── features/                 # Feature-specific React components
+│   │   ├── boss/                 # Boss CEO workspace components
+│   │   ├── supervisor/           # Supervisor COO components
+│   │   ├── workers/              # Worker pool components
+│   │   ├── workflow/             # Canvas, nodes, edges, replay
+│   │   ├── reports/              # Report viewer, download, review
+│   │   ├── analytics/            # Charts, monitors, telemetry
+│   │   └── chat/                 # Input, voice, chat thread
+│   ├── services/                 # API client, Socket.IO client
+│   ├── store/                    # Zustand global state stores
+│   └── hooks/                    # Custom React hooks
+│
+└── server/                       # Node.js Backend
+    └── src/
+        ├── agents/
+        │   ├── boss/             # Boss CEO engine (planner, validator, blueprinter)
+        │   ├── supervisor/       # Supervisor COO (DAG engine, retry, worker creator)
+        │   └── worker/           # Worker 5-step runtime engine
+        ├── workflow/             # Workflow kernel, checkpoint, recovery
+        ├── communication/        # Central event bus, socket router
+        ├── ai/                   # Gemini AI service, report synthesizer, prompt engine
+        ├── database/             # Mongoose schemas, base repository, transactions
+        ├── platform/             # Prometheus metrics, audit, backup, QA suite
+        ├── middleware/           # JWT auth, RBAC guard, rate limiter, error handler
+        └── config/               # App, database, Redis, Swagger config
 ```
 
-### Layout Modes
-- **Desktop:** Sidebar, Chat, Workflow
-- **Mobile:** Bottom Navigation, Drawer Sidebar, Responsive Layout
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** ≥ 20.x
+- **MongoDB** — [MongoDB Atlas](https://cloud.mongodb.com) free tier or local installation
+- **Gemini API Key** — [Get one free at Google AI Studio](https://aistudio.google.com)
+- **Redis** (optional) — platform works fully without it
 
 ---
 
-# Sidebar
+### 1. Clone the Repository
 
-Contains:
-- Dashboard
-- New Chat
-- History
-- Reports
-- Settings
-- Profile
-- Logout
+```bash
+git clone https://github.com/ankush-shaw/Hexafalls-2.git
+cd Hexafalls-2
+```
 
 ---
 
-# Chat Interface
+### 2. Configure Environment Variables
 
-Supports:
-- Text Input
-- Voice Input
-- Markdown
-- Code Blocks
-- Tables
-- Typing Animation
-- Streaming Responses
-- Auto Scroll
-- Conversation History
-- Attachments (Future)
+#### Frontend — create `/.env.local` at the project root:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000/api/v1
+NEXT_PUBLIC_SOCKET_URL=http://localhost:5000
+```
 
----
+#### Backend — create `/server/.env`:
+```env
+NODE_ENV=development
+PORT=5000
 
-# Voice Input
+# MongoDB (get a free URI from MongoDB Atlas)
+MONGODB_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/hexafalls_multiagent
 
-- Record Button
-- Live Wave Animation
-- Speech Recognition
-- Real-time Transcription
-- Cancel Recording
-- Retry Recording
-- Voice Status Indicator
+# JWT Secrets (use long random strings)
+JWT_SECRET=your_super_secret_jwt_access_key_here_min_32_chars
+JWT_REFRESH_SECRET=your_super_secret_jwt_refresh_key_here_min_32_chars
+JWT_EXPIRES_IN=15m
+JWT_REFRESH_EXPIRES_IN=7d
 
----
+# Gemini AI (get your key from https://aistudio.google.com)
+GEMINI_API_KEY=your_gemini_api_key_here
 
-# Boss Agent Panel
+# Redis (optional — leave as-is to run without Redis)
+REDIS_HOST=localhost
+REDIS_PORT=6379
 
-Displays:
-- Thinking...
-- Planning...
-- Breaking Tasks...
-- Creating Workflow...
-- Dependencies
-- Priority Level
-- Estimated Time
-- Overall Progress
+# CORS
+CORS_ORIGIN=http://localhost:3000
+API_PREFIX=/api/v1
+```
 
 ---
 
-# Supervisor Panel
+### 3. Install Dependencies
 
-Displays:
-- Task Queue
-- Current Execution
-- Completed Tasks
-- Failed Tasks
-- Retry Status
-- Execution Graph
-- Dependencies
+```bash
+# Frontend (from project root)
+npm install
 
----
-
-# Worker Agent Cards
-
-Each worker has its own animated card:
-- **Sales**
-- **Marketing**
-- **Inventory**
-- **Technical**
-- **Support**
-
-Each card shows:
-- Status
-- Progress
-- Task Count
-- Execution Time
-- Logs
-- Completion
+# Backend
+cd server && npm install && cd ..
+```
 
 ---
 
-# Workflow Visualization
+### 4. Run the Development Servers
 
-Interactive Flow Diagram:
+Open **two terminal windows**:
 
-$$\text{Boss Agent} \longrightarrow \text{Supervisor} \longrightarrow \text{Workers} \longrightarrow \text{Completed} \longrightarrow \text{Final Report}$$
+**Terminal 1 — Backend** (port 5000):
+```bash
+cd server
+npm run dev
+```
 
-- Animated connections
-- Live execution
-- Zoom / Pan / Collapse / Expand
-
----
-
-# Execution Timeline
-
-Chronological feed:
-1. Workflow Created
-2. Supervisor Started
-3. Sales Running
-4. Marketing Running
-5. Inventory Finished
-6. Boss Reviewing
-7. Gemini Writing Report
-8. Completed
-
-Every event features:
-- Timestamp
-- Status
-- Icon
+**Terminal 2 — Frontend** (port 3000):
+```bash
+npm run dev
+```
 
 ---
 
-# Final Report
+### 5. Open the Platform
 
-Professional report viewer:
-- Summary
-- Insights
-- Recommendations
-- Worker Results
-- Charts (future)
-- Export PDF / Download / Copy / Share
-
----
-
-# Notifications
-
-Toast Notifications:
-- Success
-- Warning
-- Error
-- Task Started
-- Task Finished
-- Worker Failed
-- Reconnect
+| URL | Description |
+|---|---|
+| `http://localhost:3000` | Frontend Dashboard |
+| `http://localhost:5000` | Backend API |
+| `http://localhost:5000/api/docs` | Swagger Docs |
+| `http://localhost:5000/health` | Health Check |
+| `http://localhost:5000/api/v1/platform/metrics` | Prometheus Metrics |
 
 ---
 
-# Animations
+## 🐳 Docker Deployment
 
-- **Framer Motion:** Page Transitions (Fade, Slide, Scale)
-- Loading Skeletons & Shimmer
-- Smooth Progress Bars
-- Card Hover & Button Ripple
-- Animated Workflow
-- Streaming AI Text & Typing Cursor
+Run the complete stack (MongoDB + Redis + Backend) with one command:
 
----
+```bash
+docker compose up -d
+```
 
-# Components
-
-- Navbar & Sidebar
-- Chat Window & Chat Bubble
-- Input Box & Voice Recorder
-- Workflow Graph
-- Boss Card, Supervisor Card, Worker Card
-- Timeline & Notification
-- Progress Bar & Report Viewer
-- Loader & Skeleton
-- Modal, Drawer, Tooltip, Dropdown
-- Avatar, Badge, Search, Theme Toggle
+Stop everything:
+```bash
+docker compose down
+```
 
 ---
 
-# State Management
+## 🧪 Running the QA Suite
 
-Centralized State covering:
-- Session State
-- Chat State
-- Workflow State
-- Agent State
-- Voice State
-- Report State
-- User State
-- Theme State
-- Notification State
+```bash
+cd server
+npm run build
+node dist/platform/tests/qa.smoke.test.js
+```
 
----
-
-# Responsiveness
-
-- Desktop
-- Laptop
-- Tablet
-- Mobile
-
-Every component adapts automatically without horizontal scrolling.
-
----
-
-# Performance
-
-- Lazy Loading
-- Code Splitting
-- Optimized Rendering
-- Streaming Responses
-- Efficient State Updates
-- Minimal Re-renders
+```
+================================================================
+                 PHASE 11 QA & REGRESSION SUMMARY               
+================================================================
+1. [Auth & Security] JWT Authorization & Role Validation     -> ✅ PASS
+2. [Boss Agent CEO] Intent & Department Discovery            -> ✅ PASS
+3. [Supervisor COO] DAG Task Graph & Worker Spawning         -> ✅ PASS
+4. [Worker Runtime] 5-Step Execution Engine & Telemetry      -> ✅ PASS
+5. [Workflow Engine] State Machine & Checkpoint Saving       -> ✅ PASS
+6. [Communication Bus] Typed Event Pub/Sub & Socket Router   -> ✅ PASS
+7. [Gemini AI Service] Executive Report & Score Synthesizer  -> ✅ PASS
+8. [Observability] Prometheus Metrics & Hardware Telemetry   -> ✅ PASS
+================================================================
+TOTAL RESULT: 8/8 PASSED (100% SUCCESS RATE)
+================================================================
+```
 
 ---
 
-# Accessibility
+## 📡 API Documentation
 
-- Keyboard Navigation
-- ARIA Labels
-- Screen Reader Friendly
-- Focus Indicators
-- High Contrast Support
+Full interactive Swagger docs: `http://localhost:5000/api/docs`
 
----
-
-# Future Scope
-
-- Multi-language
-- Real-time Collaboration
-- Multiple Boss Agents
-- Agent Marketplace
-- Custom Worker Creation
-- Analytics Dashboard
-- Workflow Templates
-- Plugin System
-- Knowledge Base
-- Live Team Collaboration
-- Enterprise Mode
+| Endpoint | Method | Description |
+|---|---|---|
+| `/api/v1/auth/register` | POST | Register a new user |
+| `/api/v1/auth/login` | POST | Login and receive JWT tokens |
+| `/api/v1/boss/analyze` | POST | Submit a request to the Boss Agent |
+| `/api/v1/supervisor/start` | POST | Start Supervisor orchestration |
+| `/api/v1/workers/create` | POST | Spawn a dynamic Worker Agent |
+| `/api/v1/workflows` | GET | List all workflows |
+| `/api/v1/ai/report` | POST | Generate an Executive Report via Gemini |
+| `/api/v1/events` | GET | Query the agent event log |
+| `/api/v1/platform/metrics` | GET | Prometheus telemetry |
+| `/health` | GET | Server health check |
 
 ---
 
-# Frontend Principles
+## 🔌 Socket.IO Events
 
-- ✔ Premium User Experience
-- ✔ AI First Design
-- ✔ Real-Time Workflow Visualization
-- ✔ Beautiful Animations
-- ✔ Fully Responsive
-- ✔ Modern Architecture
-- ✔ Component Driven
-- ✔ Clean UI
-- ✔ Transparent AI Execution
-- ✔ Scalable
-- ✔ Production Ready
+| Event | Description |
+|---|---|
+| `boss:analysis_start` | Boss Agent started analyzing the request |
+| `boss:blueprint_ready` | Boss completed the workflow blueprint |
+| `supervisor:orchestration_start` | Supervisor started breaking down tasks |
+| `worker:task_step` | A worker completed one of its 5 execution steps |
+| `worker:task_complete` | A worker finished its task |
+| `report:stream_chunk` | A chunk of the Gemini report being streamed |
+| `report:complete` | Executive Report fully generated |
+| `system:health_update` | CPU, RAM, connection count telemetry update |
 
 ---
 
-# Expected User Experience
+## 🏗️ Architecture
 
-The user should feel like they are interacting with an intelligent company rather than a chatbot.
+```
+┌─────────────────────────────────────────────────────┐
+│                  Next.js Frontend                   │
+│  Dashboard · Workflow Canvas · Boss · Supervisor    │
+│  Workers · Reports · Analytics · Settings           │
+└────────────────────┬────────────────────────────────┘
+                     │  REST API + Socket.IO
+┌────────────────────▼────────────────────────────────┐
+│              Express API Server (port 5000)          │
+│  ┌──────────┐ ┌──────────┐ ┌──────────────────────┐ │
+│  │   Boss   │ │Supervisor│ │   Worker Runtime     │ │
+│  │  Agent   │ │  Agent   │ │  5-Step Engine       │ │
+│  └────┬─────┘ └────┬─────┘ └──────────┬───────────┘ │
+│       └────────────┼──────────────────┘             │
+│              ┌─────▼──────┐                         │
+│              │  Event Bus │  (Typed Pub/Sub)         │
+│              └─────┬──────┘                         │
+│  ┌──────────┐ ┌────▼──────┐ ┌──────────────────────┐│
+│  │ Workflow │ │  Gemini   │ │ Prometheus Telemetry ││
+│  │  Kernel  │ │ AI Layer  │ │      + Audit         ││
+│  └──────────┘ └───────────┘ └──────────────────────┘│
+└──────────────────────┬──────────────────────────────┘
+         ┌─────────────┼──────────────┐
+    ┌────▼────┐    ┌───▼───┐    ┌────▼────┐
+    │ MongoDB │    │ Redis │    │ BullMQ  │
+    │  (DB)   │    │(Cache)│    │(Queues) │
+    └─────────┘    └───────┘    └─────────┘
+```
 
-Every action should be visible.
-Every decision should be explainable.
-Every workflow should feel alive.
+---
 
-The **Boss Agent** acts as the strategic brain, the **Supervisor** as the orchestrator, the **Worker Agents** as specialists, and the final report as a polished executive summary.
+## 🤝 Contributing
 
-The frontend delivers an immersive, responsive, and visually engaging experience that communicates confidence, intelligence, and professionalism while making complex AI workflows simple to understand.
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature`
+3. Commit: `git commit -m "feat: add your feature"`
+4. Push: `git push origin feature/your-feature`
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 👤 Author
+
+**Ankush Shaw**
+
+[![GitHub](https://img.shields.io/badge/GitHub-ankush--shaw-181717?style=flat-square&logo=github)](https://github.com/ankush-shaw)
+
+---
+
+<div align="center">
+
+**Built with ❤️ using Next.js · Node.js · MongoDB · Socket.IO · Gemini AI**
+
+⭐ Star this repo if you found it useful!
+
+</div>
