@@ -15,9 +15,12 @@
 [![Socket.IO](https://img.shields.io/badge/Socket.IO-4-010101?style=flat-square&logo=socket.io)](https://socket.io)
 [![Gemini AI](https://img.shields.io/badge/Gemini-1.5%20Pro-4285f4?style=flat-square&logo=google)](https://ai.google.dev)
 
-[📖 API Docs](#api-documentation) · [🐳 Docker](#docker-deployment) · [🧪 QA Suite](#running-the-qa-suite)
+[🌐 Live Frontend](https://hexafalls-2.vercel.app) · [⚙️ Live Backend](https://hexafalls-2.onrender.com) · [📖 API Docs](#api-documentation) · [🐳 Docker](#docker-deployment) · [🧪 QA Suite](#running-the-qa-suite)
 
 ---
+
+[![Frontend](https://img.shields.io/badge/Frontend-hexafalls--2.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://hexafalls-2.vercel.app)
+[![Backend](https://img.shields.io/badge/Backend-hexafalls--2.onrender.com-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://hexafalls-2.onrender.com)
 
 ![Status](https://img.shields.io/badge/Status-Production%20Ready-22c55e?style=for-the-badge)
 ![QA](https://img.shields.io/badge/QA%20Suite-8%2F8%20Passing-22c55e?style=for-the-badge)
@@ -264,6 +267,17 @@ npm run dev
 
 ### 5. Open the Platform
 
+#### 🌐 Deployed (Live)
+
+| URL | Description |
+|---|---|
+| [https://hexafalls-2.vercel.app](https://hexafalls-2.vercel.app) | ✅ Frontend — Live on Vercel |
+| [https://hexafalls-2.onrender.com](https://hexafalls-2.onrender.com) | ✅ Backend API — Live on Render |
+| [https://hexafalls-2.onrender.com/api/docs](https://hexafalls-2.onrender.com/api/docs) | Swagger API Docs (Production) |
+| [https://hexafalls-2.onrender.com/health](https://hexafalls-2.onrender.com/health) | Backend Health Check (Production) |
+
+#### 💻 Local Development
+
 | URL | Description |
 |---|---|
 | `http://localhost:3000` | Frontend Dashboard |
@@ -271,6 +285,7 @@ npm run dev
 | `http://localhost:5000/api/docs` | Swagger Docs |
 | `http://localhost:5000/health` | Health Check |
 | `http://localhost:5000/api/v1/platform/metrics` | Prometheus Metrics |
+
 
 ---
 
