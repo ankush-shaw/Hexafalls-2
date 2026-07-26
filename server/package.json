@@ -1,6 +1,7 @@
 {
   "name": "hexafalls-backend",
   "version": "1.0.0",
+  "author": "Ankush Shaw, Arpan Basak",
   "description": "Enterprise Multi-Agent AI Operating System Backend Engine",
   "main": "dist/server.js",
   "scripts": {
