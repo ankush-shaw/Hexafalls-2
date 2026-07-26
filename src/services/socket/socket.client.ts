@@ -166,6 +166,29 @@ export class SocketClient {
       useWorkflowStore.getState().addExecutionLog(executionId, log);
     });
 
+    // Backend Real-time Multi-Agent Telemetry Events
+    this.socket.on('boss_started' as any, (data: any) => {
+      console.log('⚡ Boss Started Event:', data);
+    });
+
+    this.socket.on('boss_approved' as any, (data: any) => {
+      console.log('⚡ Boss Approved Blueprint:', data);
+    });
+
+    this.socket.on('worker_progress' as any, (data: any) => {
+      console.log('⚡ Worker Progress:', data);
+    });
+
+    this.socket.on('notification_received' as any, (notification: any) => {
+      useNotificationsStore.getState().addNotification({
+        id: notification.notificationId || `notif-${Date.now()}`,
+        title: notification.title || 'System Notification',
+        message: notification.message || '',
+        type: notification.type || 'info',
+        timestamp: new Date().toISOString(),
+      });
+    });
+
     // System Events
     this.socket.on('system:notification', (notification) => {
       useNotificationsStore.getState().addNotification(notification);
@@ -183,5 +206,6 @@ export class SocketClient {
     });
   }
 }
+
 
 export const socketClient = SocketClient.getInstance();
