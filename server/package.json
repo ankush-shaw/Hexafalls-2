@@ -4,11 +4,12 @@
   "description": "Enterprise Multi-Agent AI Operating System Backend Engine",
   "main": "dist/server.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "tsc && node dist/server.js",
     "build": "tsc",
     "start": "node dist/server.js",
     "lint": "eslint src/**/*.ts"
   },
+
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "bullmq": "^5.41.6",
