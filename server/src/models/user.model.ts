@@ -45,7 +45,6 @@ userSchema.methods.comparePassword = async function (candidatePassword: string):
   return bcrypt.compare(candidatePassword, this.passwordHash);
 };
 
-userSchema.index({ email: 1 });
-
 export const User = model<IUser>('User', userSchema);
 export default User;
+

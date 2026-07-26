@@ -43,10 +43,22 @@ app.use(
 );
 
 // ─── Health Endpoints ─────────────────────────────────────────────────────────
+app.get('/', (_req, res) => {
+  res.json({
+    success: true,
+    name: 'AegisOS Enterprise Multi-Agent AI Operating System API',
+    version: '1.0.0',
+    documentation: '/api/docs',
+    healthCheck: `${appConfig.apiPrefix}/health`,
+    status: 'online',
+    timestamp: new Date().toISOString(),
+  });
+});
 app.get('/health', healthController.health);
 app.get('/live',   healthController.live);
 app.get('/ready',  healthController.ready);
 app.get('/system', healthController.system);
+
 
 // ─── Swagger Docs ─────────────────────────────────────────────────────────────
 app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
