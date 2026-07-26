@@ -416,7 +416,7 @@ This project is licensed under the **MIT License**.
 
 ## 👤 Authors
 
-**Ankush Shaw** & **Arpan Basak**
+**Ankush Shaw**, **Arpan Basak**, & **Ranit Sarkar**
 
 [![GitHub](https://img.shields.io/badge/GitHub-ankush--shaw-181717?style=flat-square&logo=github)](https://github.com/ankush-shaw)
 
